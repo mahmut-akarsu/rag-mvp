@@ -91,7 +91,7 @@ class RAGPipeline:
         for doc in source_documents:
             source = doc.metadata.get("source", "Bilinmeyen Kaynak")
             page = doc.metadata.get("page", "Bilinmeyen Sayfa")
-            sources_info.append(f"Kaynak: {os.path.basename(source)}, Sayfa: {page}")
+            sources_info.append(f"Kaynak: {os.path.basename(source)}, Page: {page+1}")
 
         if sources_info:
             answer += "\n\nKaynaklar:\n" + "\n".join(sources_info)

@@ -4,9 +4,18 @@ from typing import Optional
 from qdrant_pipeline import RAGPipeline  # burayı rag_pipeline yerine qdrant_pipeline yaptım
 import uvicorn
 import os
+from fastapi.middleware.cors import CORSMiddleware
 
 # FastAPI uygulamasını başlat
 app = FastAPI(title="RAG PDF Chatbot API with Qdrant")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # frontend port
+    allow_credentials=True,
+    allow_methods=["*"],  # GET, POST, OPTIONS vs. tüm methodlar
+    allow_headers=["*"],
+)
 
 # RAGPipeline örneğini global olarak oluştur
 # Bu, uygulamanın her isteğinde yeniden başlatılmasını engeller
